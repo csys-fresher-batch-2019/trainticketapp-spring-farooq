@@ -15,7 +15,9 @@ import com.chainsys.seats.Seats;;
 
 public class Seatsimplementation implements SeatsDAO {
 
-	
+	/**
+	 * Get seats count for particular train and date
+	 */
 	public int updateSeatsCount(Seats s) throws DbException {
 	
 		

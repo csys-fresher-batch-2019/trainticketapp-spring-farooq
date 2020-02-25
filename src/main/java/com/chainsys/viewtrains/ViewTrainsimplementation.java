@@ -15,7 +15,9 @@ import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
 
 public class ViewTrainsimplementation implements ListTrainDAO {
-
+/**
+ * return Train details
+ */
 	public ArrayList<ListTrain> getTrainsByArrivalTime() throws DbException {
 
 		try (
@@ -147,7 +149,9 @@ public class ViewTrainsimplementation implements ListTrainDAO {
 		}
 		return task;
 	}
-
+/**
+ * Get train Details and inserting into DB
+ */
 	public void insertnewTrain(ListTrain lt) throws DbException {
 
 		try (Connection connection = TestConnect.getConnection();
@@ -191,7 +195,10 @@ System.out.println(sql);
 			throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
 		}
 	}
-
+/**
+ * Search Trains By Getting Source , Destination , Travel date
+ * return Train list
+ */
 	public ArrayList<ListTrain> getTrainDetails(String boardingStation, String destinationStation, LocalDate traveldate)
 			throws DbException {
 		String sql = "select * from viewtrain where Boarding_station=? and destination_station=? and traveldate=?";

@@ -16,7 +16,9 @@ import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
 
 public class RegistrationImplementation implements com.chainsys.dao.RegistrationDAO {
-
+/**
+ * Get user-id and phone number and update DB
+ */
 	public void changephonenum(int userid, long phonenumber) throws DbException {
 
 		String query = "select user_id from registration where user_id=?";
@@ -149,7 +151,10 @@ public class RegistrationImplementation implements com.chainsys.dao.Registration
 				throw new DbException("ESTABLISH CONNECTION");
 			}
 	}
-
+/**
+ * Get emailId 
+ * return password
+ */
 	public String getUserPassword(String emailid) throws DbException {
 
 		String query = "select pass from registration where email_id=?";
@@ -213,7 +218,9 @@ public class RegistrationImplementation implements com.chainsys.dao.Registration
 			throw new DbException(ErrorMessages.UNABLE_TO_PROCESS);
 		}
 	}
-
+/**
+ * Get userId,Password and update DB
+ */
 	public void changePassword(String emailid ,String pass) throws DbException {
 
 		String query1 = "update registration set pass=? where email_id=?";
@@ -230,7 +237,12 @@ public class RegistrationImplementation implements com.chainsys.dao.Registration
 e.printStackTrace();
 		}
 			}
-
+/**
+ * 
+ * @param obj
+ * @throws DbException
+ * Get User details Using Object And insert into DB
+ */
 	public static void save(Register obj) throws DbException {
 
 		String sql = "insert into registration values(?,?,?,?,?,?,?,?)";
@@ -255,7 +267,9 @@ e.printStackTrace();
 			throw new DbException("UNABLE TO PROCESS");
 		}
 	}
-
+/**
+ * Get user Details and Insert into DB
+ */
 	public int registrationInsert(String username, String password, String emailid, long phonenumber, String gender,
 			LocalDate dob, String cityname) throws DbException {
 
@@ -286,7 +300,9 @@ e.printStackTrace();
 		}
 		return user_id;
 	}
-
+/**
+ * Get User-id and Status as 0(unblock)/1(Block) 
+ */
 	public int blockUser(int userid, int status) throws DbException {
 
 		String sql = "update registration set blocklist =? where user_id=?";

@@ -22,6 +22,10 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 	int age;
 	String boardingStation;
 	Logger logger = Logger.getInstance();
+	
+	/**
+	 * checking ticket status using PNR number
+	 */
 
 	public void checkStatusByPnrNumber(long pnrNumber) throws DbException {
 
@@ -51,6 +55,12 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 
 	}
 
+	/**
+	 * get train details as train number,source,destination,no of seats to be booked and travel date
+	 * calculating total amount and returning it
+	 * updating seats count
+	 * displaying PNR number
+	 */
 	public int bookSeats(int trainnumber, int userId, String boarding, String destination, int noOfSeats,
 			LocalDate date) throws Exception {
 
@@ -138,7 +148,10 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 			throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
 		}
 	}
-
+/**
+ * Get user-id and password then checking with DB
+ * return valid or invalid as Boolean type 
+ */
 	public boolean login(int userid, String password) throws DbException {
 
 		String sql1 = "select user_id,pass from registration where user_id =? and pass =?";
@@ -190,6 +203,13 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 
 		return emailId;
 	}
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 * Get User-id 
+	 * return Booking details in a List
+	 */
 
 	public ArrayList<Booking> myBookings(int userId) {
 
@@ -216,6 +236,10 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 		return task;
 	}
 
+	/**
+	 * Get PNR number to remove details from booking table
+	 * Get user-id,train number,travel date and move to cancellation table 
+	 */
 	public void Cancellation(int user_id, int train_number, LocalDate traveldate, long pnrNumber) throws DbException {
 
 		Connection connection;
@@ -273,6 +297,7 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 
 	}
 
+	
 	public String getUserName(int user_id) throws DbException {
 		String name = null;
 		String sql = "select user_name from registration where user_id=?";

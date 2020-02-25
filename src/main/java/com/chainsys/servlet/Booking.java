@@ -42,11 +42,12 @@ public class Booking extends HttpServlet {
 
 		try {
 			
-			int amount=obj.bookSeats(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
+			int amount=obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
 			
 
 System.out.println(amount);
-			if(amount==0) {
+
+if(amount==0) {
 				out.println("your account is blocked Please Contact Us");
 			}
 			else

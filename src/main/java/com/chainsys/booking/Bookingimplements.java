@@ -295,7 +295,110 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 	}
 
 	public void deleteBooking(int userid, Date traveldate) {
-
+		
 	}
 
+
+	public int bookSeats1(int trainnumber, int userId, String boarding, String destination, int noOfSeats,
+			LocalDate date) throws Exception {
+
+		int a = 0;
+		try (Connection connection = TestConnect.getConnection(); Statement stmt1 = connection.createStatement();) {
+
+			String sql = "select blocklist from registration where user_id=" + userId + "";
+
+			try (ResultSet row = stmt1.executeQuery(sql);) {
+
+				if (row.next()) {
+					int status = row.getInt("blocklist");
+
+					if (status == 0) {
+						System.out.println(trainnumber + "-" + userId + "-" + boarding + "-" + destination + "-" + date
+								+ "-" + noOfSeats);
+
+						CallableStatement stmt = connection.prepareCall("{call PR_booking_status(?,?,?,?,?,?)}");
+						stmt.setInt(1, trainnumber);
+						stmt.setInt(2, userId);
+						stmt.setString(3, boarding);
+						stmt.setString(4, destination);
+						java.sql.Date date2 = java.sql.Date.valueOf(date);
+						stmt.setDate(6, date2);
+						stmt.setInt(5, noOfSeats);
+
+						stmt.executeQuery();
+
+						String sql2 = "select amount from viewtrain where train_num='" + trainnumber + "'";
+
+				try(		ResultSet row3 = connection.createStatement().executeQuery(sql2);){
+						if (row3.next()) {
+							int amount = row3.getInt("amount");
+							System.out.println("BOOKING DETAILS");
+							System.out.println("\n");
+
+							String sql4 = "select no_of_seats from booking where travel_date=to_date('" + date2
+									+ "','yyyy-MM-dd') and user_id=" + userId + "";
+
+							try(ResultSet seats = connection.createStatement().executeQuery(sql4);){
+							if (seats.next()) {
+								int seats1 = seats.getInt("no_of_seats");
+								a = seats1 * amount;
+								System.out.println("AMOUNT TO BE PAID=" + a);
+
+								String sql3 = "update booking set amount=" + a + "where travel_date=to_date('" + date2
+										+ "','yyyy-MM-dd') and user_id=" + userId + "";
+								stmt.executeUpdate(sql3);
+							}
+							String sql5 = "select no_of_seats from bookingQueue where travel_date=to_date('" + date2
+									+ "','yyyy-MM-dd') and user_id=" + userId + "";
+
+							try(ResultSet seats1 = connection.createStatement().executeQuery(sql5);){
+
+							if (seats1.next()) {
+								int seats2 = seats1.findColumn("no_of_seats");
+								int b = seats2 * amount;
+								String sql6 = "update bookingQueue set amount=" + b + "where travel_date=to_date('"
+										+ date2 + "','yyyy-MM-dd') and user_id=" + userId + "";
+								stmt.executeUpdate(sql6);
+								System.out.println("\n");
+							}
+							
+
+						
+						String sql1 = "select pnr_num,travel_date from booking where travel_date=to_date('" + date
+								+ "','yyyy-MM-dd')";
+
+						try(ResultSet row1 = connection.createStatement().executeQuery(sql1);){
+						while (row1.next()) {
+							int pnr = row1.getInt("pnr_num");
+							Date date1 = row1.getDate("travel_date");
+							Logger.getInstance().info("PNR NUMBER=" + pnr + "\n" + "TRAVEL DATE=" + date1);
+						}
+
+					}catch(Exception e) {
+						throw new DbException(ErrorMessages.INVALID_SQLQUERY);
+					}
+				}catch(Exception e) {
+					throw new DbException(ErrorMessages.INVALID_SQLQUERY);
+				}
+
+			} catch (DbException e) {
+				throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
+			}
+		} 
+	}catch (DbException e) {
+			throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
+	}	}	else {
+
+		throw new DbException("YOUR ACCOUNT IS BLOCKED ");
+	}
+
+}
+			} catch (DbException e) {
+				throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
+			}
+		} catch (DbException e) {
+			throw new DbException(ErrorMessages.ESTABLISH_CONNECTION);
+		}
+		return a;
+	}
 }

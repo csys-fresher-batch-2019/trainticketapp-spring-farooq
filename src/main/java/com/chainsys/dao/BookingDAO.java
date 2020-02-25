@@ -19,4 +19,7 @@ public interface BookingDAO {
 	public void Cancellation(int user_id, int train_number,LocalDate traveldate,long pnrNumber) throws DbException;
 	
 	public ArrayList<Booking> myBooking(int user_id) throws DbException;
+	
+	public int bookSeats1(int trainnumber,int userId,String boarding,String destination,int noOfSeats,LocalDate date) throws DbException, SQLException, Exception;
+
 }

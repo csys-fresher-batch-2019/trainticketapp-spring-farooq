@@ -25,7 +25,7 @@ public class ForgetPassword extends HttpServlet {
 		HttpSession sec = request.getSession();
 		sec.setAttribute("emailid", emailId);
 		//System.out.println(emailId);http://192.168.56.205:8088/NewIndex.jsp
-		MailUtil1.send("railt9740@gmail.com", "Railways123@",emailId, "TICKETS BOOKING STATUS", "http://192.168.56.205:8088/UpdatePassword.jsp");
+		MailUtil1.send("railt9740@gmail.com", "Railways123@",emailId, "TICKETS BOOKING STATUS", "https://apirailbookin.cfapps.io/UpdatePassword.jsp");
 		PrintWriter out = response.getWriter();
 		out.println("Check your Email to Change your password");
 	}

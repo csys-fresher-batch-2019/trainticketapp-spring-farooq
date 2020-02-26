@@ -128,12 +128,9 @@ function validate()
  </tr>
  <tr>
  <td>Gender</td>
+  <input type="radio" name="gender" value="M"> Male
+  <input type="radio" name="gender" value="F"> Female
  
- <td><input list="gender" name="gender" ></td>
-		<datalist id="gender">
-			<option value="M">MALE</option>
-			<option value="F">FEMALE</option>
-		</datalist>
  <tr>
  <td>Date Of Birth</td>
  <td><input type="date" name="dob" max="2016-12-31"required/></td>

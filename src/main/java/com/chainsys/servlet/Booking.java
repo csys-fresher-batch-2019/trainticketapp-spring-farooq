@@ -55,8 +55,8 @@ if(amount==0) {
 
 			
 		} catch (Exception e) {
-			//out.println("seats full");
-			e.printStackTrace();
+			out.println("seats full");
+			
 		}
 
 	}

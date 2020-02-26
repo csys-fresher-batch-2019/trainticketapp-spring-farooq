@@ -48,7 +48,7 @@ public class PaymentServlet extends HttpServlet {
 		}
 		
 		
-		MailUtil1.send("railt9740@gmail.com", "Railways123@",emailId, "TICKETS BOOKING STATUS", "SUCCESSFULLY BOOKED .............\n AMOUNT PAID='"+Amount+"'");	
+		MailUtil1.send("railt9740@gmail.com", "Railways123@",emailId, "TICKETS BOOKING STATUS", "SUCCESSFULLY BOOKED \n AMOUNT PAID='"+Amount+"'");	
 		String url=request.getParameter("redirect_url");
 		System.out.println(url);
 		String param = "?status="+ result;

@@ -53,16 +53,10 @@ Properties props = new Properties();
 
 private static Multipart messageBody(String Msg) throws MessagingException{ {
 BodyPart messageBodyPart1 = new MimeBodyPart();  
-messageBodyPart1.setText("Prime OTP Assitance");  
+messageBodyPart1.setText("Welcome To RailBook");  
 BodyPart messageBodyPart2 = new MimeBodyPart(); 
-messageBodyPart2.setText("\nTo authenticate, please use the following One Time Password (OTP):");
+messageBodyPart2.setText("");
 
-BodyPart messageBodyPart3 = new MimeBodyPart(); 
-messageBodyPart3.setText(Msg);
-BodyPart messageBodyPart4 = new MimeBodyPart(); 
-messageBodyPart4.setText("Do not share this OTP with anyone. \nAmazon takes your account security very seriously. \nAmazon Customer Service will never ask you to disclose or \nverify your Amazon password, OTP, credit card, or banking account number. ");
-BodyPart messageBodyPart5 = new MimeBodyPart(); 
-messageBodyPart5.setText("");
 
 /*String filename = "SendAttachment.java";  
 FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
@@ -72,9 +66,6 @@ messageBodyPart2.setFileName(filename); */
 Multipart multipart = new MimeMultipart();  
 multipart.addBodyPart(messageBodyPart1);  
 multipart.addBodyPart(messageBodyPart2);
-multipart.addBodyPart(messageBodyPart3);
-multipart.addBodyPart(messageBodyPart4);
-multipart.addBodyPart(messageBodyPart5);
 return multipart; 
 
 

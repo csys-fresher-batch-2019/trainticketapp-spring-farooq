@@ -55,8 +55,8 @@ if(amount==0) {
 
 			
 		} catch (Exception e) {
-			out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN\n USER CN ONLY BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
-			
+			//out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN\n USER CN ONLY BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
+			e.printStackTrace();
 		}
 
 	}

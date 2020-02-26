@@ -55,7 +55,7 @@ private static Multipart messageBody(String Msg) throws MessagingException{ {
 BodyPart messageBodyPart1 = new MimeBodyPart();  
 messageBodyPart1.setText("Welcome To RailBook");  
 BodyPart messageBodyPart2 = new MimeBodyPart(); 
-messageBodyPart2.setText("");
+messageBodyPart2.setText("Login With this"+Msg);
 
 
 /*String filename = "SendAttachment.java";  

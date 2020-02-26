@@ -53,9 +53,9 @@ Properties props = new Properties();
 
 private static Multipart messageBody(String Msg) throws MessagingException{ {
 BodyPart messageBodyPart1 = new MimeBodyPart();  
-messageBodyPart1.setText("Welcome To RailBook");  
+messageBodyPart1.setText("Welcome To RailBook\n");  
 BodyPart messageBodyPart2 = new MimeBodyPart(); 
-messageBodyPart2.setText("Login With this"+Msg);
+messageBodyPart2.setText(Msg);
 
 
 /*String filename = "SendAttachment.java";  

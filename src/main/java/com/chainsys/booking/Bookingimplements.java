@@ -107,7 +107,7 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 								System.out.println("AMOUNT TO BE PAID=" + a);
 
 								String sql3 = "update booking set amount=" + a + "where travel_date=to_date('" + date2
-										+ "','yyyy-MM-dd') and user_id=" + userId + "";
+										+ "','yyyy-MM-dd') and user_id=" + userId + "and train_num='" + trainnumber + "'";
 								stmt.executeUpdate(sql3);
 							}
 							String sql5 = "select no_of_seats from bookingQueue where travel_date=to_date('" + date2

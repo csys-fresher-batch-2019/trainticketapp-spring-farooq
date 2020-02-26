@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -10,68 +11,7 @@ body  {
 }
 
 </style>
-<script> 
-function validate()
-{ 
- var Username = document.form.fullname.value;
- var email = document.form.email.value;
- var username = document.form.username.value; 
- var password = document.form.password.value;
- var conpassword= document.form.conpassword.value;
- var phonenumber=document.form.phonenumber.value;
- var gender = document.form.gender.value;
- var dob = document.form.dob.value;
- var city = document.form.city.value;
- 
- if (Username==null || Username=="")
- { 
- alert("User Name can't be blank"); 
- return false; 
- }
- else if (email==null || email=="")
- { 
- alert("Email can't be blank"); 
- return false; 
- }
- else if (username==null || username=="")
- { 
- alert("Username can't be blank"); 
- return false; 
- }
- else if(password.length<6)
- { 
- alert("Password must be at least 6 characters long."); 
- return false; 
- } 
- else if (password!=conpassword)
- { 
- alert("Confirm Password should match with the Password"); 
- return false; 
- } 
- else if(phonenumber!=phonenumber)
-	 {
-	 alert("phone number can't be blank");
-	 return false;
-	 }
- else if(gender!=gender)
- {
- alert("gender can't be blank");
- return false;
- }
- 
- else if(dob!=dob)
- {
- alert("dob can't be blank");
- return false;
- }
- else if(city!=city)
- {
- alert("city can't be blank");
- return false;
- }
 
- } 
-</script> 
 </head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -131,9 +71,12 @@ function validate()
  <td> <input type="radio" name="gender" value="M"> Male
   <input type="radio" name="gender" value="F"> Female</td>
  </tr>
+ <%
+ LocalDate date = LocalDate.now();
+ %>
  <tr>
  <td>Date Of Birth</td>
- <td><input type="date" name="dob" max="2016-12-31"required/></td>
+ <td><input type="date" name="dob" max="<%=date %>"required/></td>
  </tr>
  <tr>
  <td>City</td>

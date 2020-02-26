@@ -43,7 +43,7 @@ String amount=request.getParameter("amount");
 <h3>Payments Page</h3>
 <form action="PaymentServlet" method="post">
 Merchant Id : <input type="number" name="merchantid" value="6789012340" readonly  /> <br/>
-User Mobile No : <input type="number" name="mobileno" required /> <br/>
+User Mobile No : <input type="number" name="mobileno" pattern=[0-9]{10} required /> <br/>
 Amount: <input name="amount" value=<%=amount %> readonly/> <br/> <br/>
 <input type="hidden" name="redirect_url" value="success.jsp" />
 <!-- <input type = "button" value = "Redirect Me" onclick = "Redirect();" /> -->

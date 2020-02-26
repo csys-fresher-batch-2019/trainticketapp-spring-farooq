@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="com.chainsys.viewtrains.ViewTrainsimplementation"%>
 <%@page import="com.chainsys.booking.Bookingimplements"%>
 <%@page import="java.util.ArrayList"%>
@@ -208,10 +209,12 @@ color:#ffffff ;
 			<%for(String li : list){ %>
 						<option value="<%=li%>"><%=li %></option>
 						<%} %>
-			
+			<%
+			LocalDate date = LocalDate.now();
+			%>
 					</datalist></label><br>
 				<br> <label> <input type="date" name="Traveldate"
-					min="2020-01-02" max="2020-05-02" placeholder="Select Travel Date">
+					min="<%=date %>" max="2020-05-02" placeholder="Select Travel Date">
 					<br></label> <br>
 				<button type="submit" class="cancelbtn">FIND TRAINS</button>
 

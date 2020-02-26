@@ -412,12 +412,12 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 		} 
 	}catch (DbException e) {
 			throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
-	}	}	else {
+	}	}	
+}else {
 
 		throw new DbException("YOUR ACCOUNT IS BLOCKED ");
 	}
 
-}
 			} catch (DbException e) {
 				throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
 			}

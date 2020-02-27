@@ -1,4 +1,4 @@
-package com.chainsys.RailTicket;
+package com.chainsys;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication(exclude=DataSourceAutoConfiguration.class)
-@ServletComponentScan("com.chainsys")
+@ServletComponentScan
 public class RailTicketApplication extends SpringBootServletInitializer{
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

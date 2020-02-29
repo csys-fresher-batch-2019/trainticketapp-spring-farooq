@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chainsys.dao.impl.Bookingimplements;
+import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.dao.impl.ViewTrainsimplementation;
 import com.chainsys.exception.DbException;
 import com.chainsys.model.ListTrain;
@@ -66,5 +67,27 @@ public class ProductController {
 		obj1.setStatus(status);
 		obj.insertnewTrain(obj1);
 	}
+	@PostMapping("/block")
 
+	public int block(@RequestParam("userid") int userId,
+			@RequestParam("status") int status)
+			throws Exception {
+
+RegistrationImplementation obj = new RegistrationImplementation();
+		return obj.blockUser(userId, status);
+	}
+	@PostMapping("/cancellation")
+
+	public void cancellation(@RequestParam("userid") int userId,
+			@RequestParam("trainnumber") int train_number,
+			@RequestParam("traveldate") LocalDate traveldate,
+			@RequestParam("pnrNumber") long pnrNumber
+			)
+			throws Exception {
+
+Bookingimplements obj = new Bookingimplements();
+
+		obj.Cancellation(userId, train_number, traveldate, pnrNumber);
+	}
+	
 }

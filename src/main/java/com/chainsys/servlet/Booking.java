@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import com.chainsys.booking.Bookingimplements;
 import com.chainsys.exception.DbException;
 import com.chainsys.Util.MailUtil1;
+import com.chainsys.dao.impl.Bookingimplements;
 @WebServlet("/Booking")
 public class Booking extends HttpServlet {
 	private static final long serialVersionUID = 1L;

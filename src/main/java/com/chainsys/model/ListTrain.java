@@ -1,4 +1,4 @@
-package com.chainsys.viewtrains;
+package com.chainsys.model;
 
 import java.sql.Date;
 import java.time.LocalDate;

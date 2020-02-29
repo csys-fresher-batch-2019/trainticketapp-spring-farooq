@@ -3,7 +3,6 @@ package com.chainsys.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.chainsys.TestConnect;
 import com.chainsys.exception.DbException;
 
 public class JdbcUtil {

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.chainsys.Util.MailUtil1;
+import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.registration.RegistrationImplementation;
 
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.chainsys.dao.RegistrationDAO;
+import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.registration.RegistrationImplementation;
 import com.chainsys.Util.MailUtil1;
 
 @WebServlet("/ForgetPassword")

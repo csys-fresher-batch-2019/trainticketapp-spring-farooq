@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.chainsys.exception.DbException;
-import com.chainsys.viewtrains.ListTrain;
+import com.chainsys.model.ListTrain;
 
 public interface ListTrainDAO {
 

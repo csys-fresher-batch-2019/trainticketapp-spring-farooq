@@ -1,4 +1,4 @@
-package com.chainsys.dao;
+package com.chainsys.Util;
 
 
 public class Logger {

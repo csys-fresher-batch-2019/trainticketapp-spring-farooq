@@ -1,4 +1,4 @@
-package com.chainsys.viewtrains;
+package com.chainsys.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,11 +8,12 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.chainsys.TestConnect;
+import com.chainsys.Util.Logger;
+import com.chainsys.Util.TestConnect;
 import com.chainsys.dao.ListTrainDAO;
-import com.chainsys.dao.Logger;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
+import com.chainsys.model.ListTrain;
 
 public class ViewTrainsimplementation implements ListTrainDAO {
 /**
@@ -158,9 +159,11 @@ public class ViewTrainsimplementation implements ListTrainDAO {
 
 				Statement stmt = connection.createStatement();) {
 
-			String sql = "insert into viewtrain values(" + lt.getTrainnumber() + ",'" + lt.getTrainname() + "','"+"','"+lt.getDate()+ lt.getBoardingstation() + "','" + lt.getDestinationstation() + "',to_timestamp('"
-					+ lt.getArrivaltime() + "','HH:MI:SS'),to_timestamp('" + lt.getDepaturetime() + "','HH:MI:SS'),'"
-					+ lt.getRoute() + "','" + lt.getStatus() + "'," + lt.getAmount() + ")";
+			String sql = "insert into viewtrain values(" + lt.getTrainnumber() + ",'" + lt.getTrainname() 
+			+ "',to_date('"+lt.getDate()+"','yyyy-MM-dd'),'"+ lt.getBoardingstation() + "','" + lt.getDestinationstation() 
+			+ "',to_timestamp('"+ lt.getArrivaltime() + "','HH:MI:SS'),to_timestamp('" 
+			+ lt.getDepaturetime() + "','HH:MI:SS'),'"
+			+ lt.getRoute() + "','" + lt.getStatus() + "'," + lt.getAmount() + ")";
 System.out.println(sql);
 			stmt.executeUpdate(sql);
 		} catch (Exception e) {

@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.chainsys.viewtrains.ListTrain;
-import com.chainsys.viewtrains.ViewTrainsimplementation;
+import com.chainsys.dao.impl.ViewTrainsimplementation;
+import com.chainsys.model.ListTrain;
 
 /**
  * Servlet implementation class ViewTrains

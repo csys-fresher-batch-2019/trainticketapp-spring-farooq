@@ -1,7 +1,7 @@
-<%@page import="com.chainsys.dao.Logger"%>
+<%@page import="com.chainsys.Util.Logger"%>
 <%@page import="java.io.PrintWriter"%>
-<%@page import="com.chainsys.registration.RegistrationImplementation"%>
-<%@page import="com.chainsys.booking.Bookingimplements"%>
+<%@page import="com.chainsys.dao.impl.RegistrationImplementation"%>
+<%@page import="com.chainsys.dao.impl.Bookingimplements"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

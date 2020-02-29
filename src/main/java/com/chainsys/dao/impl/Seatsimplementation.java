@@ -1,4 +1,4 @@
-package com.chainsys.seats;
+package com.chainsys.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import com.chainsys.TestConnect;
+import com.chainsys.Util.TestConnect;
 import com.chainsys.dao.SeatsDAO;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
-import com.chainsys.seats.Seats;;
+import com.chainsys.model.Seats;;
 
 
 public class Seatsimplementation implements SeatsDAO {

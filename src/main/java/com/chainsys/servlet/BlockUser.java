@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.registration.RegistrationImplementation;
 @WebServlet("/BlockUser")
 public class BlockUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;

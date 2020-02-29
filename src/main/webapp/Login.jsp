@@ -1,4 +1,4 @@
-<%@page import="com.chainsys.booking.Bookingimplements"%>
+<%@page import="com.chainsys.dao.impl.Bookingimplements"%>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">

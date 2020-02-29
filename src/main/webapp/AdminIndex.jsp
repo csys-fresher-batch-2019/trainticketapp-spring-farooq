@@ -1,6 +1,6 @@
-<%@page import="com.chainsys.booking.Bookingimplements"%>
+<%@page import="com.chainsys.dao.impl.Bookingimplements"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.chainsys.viewtrains.ListTrain"%>
+<%@page import="com.chainsys.model.ListTrain"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>

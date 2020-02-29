@@ -1,8 +1,8 @@
 <%@page import="java.time.LocalDate"%>
-<%@page import="com.chainsys.viewtrains.ViewTrainsimplementation"%>
-<%@page import="com.chainsys.booking.Bookingimplements"%>
+<%@page import="com.chainsys.dao.impl.ViewTrainsimplementation"%>
+<%@page import="com.chainsys.dao.impl.Bookingimplements"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.chainsys.viewtrains.ListTrain"%>
+<%@page import="com.chainsys.model.ListTrain"%>
 <html>
 <head>
 <style>

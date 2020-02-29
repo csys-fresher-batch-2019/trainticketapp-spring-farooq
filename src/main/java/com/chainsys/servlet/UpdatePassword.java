@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.booking.Bookingimplements;
 import com.chainsys.dao.RegistrationDAO;
+import com.chainsys.dao.impl.Bookingimplements;
+import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.registration.RegistrationImplementation;
 import com.chainsys.Util.MailUtil1;
 
 @WebServlet("/UpdatePassword")

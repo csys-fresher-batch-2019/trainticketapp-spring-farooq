@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chainsys.dao.impl.Seatsimplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.seats.Seats;
-import com.chainsys.seats.Seatsimplementation;
+import com.chainsys.model.Seats;
 
 @WebServlet("/UpdateSeats")
 public class UpdateSeats extends HttpServlet {

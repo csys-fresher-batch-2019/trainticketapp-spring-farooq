@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chainsys.booking.Bookingimplements;
+import com.chainsys.dao.impl.Bookingimplements;
+import com.chainsys.dao.impl.ViewTrainsimplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.viewtrains.ListTrain;
-import com.chainsys.viewtrains.ViewTrainsimplementation;
+import com.chainsys.model.ListTrain;
 @CrossOrigin( origins="*")
 @RestController
 @RequestMapping("api")
@@ -37,6 +37,34 @@ public class ProductController {
 		Bookingimplements obj = new Bookingimplements();
 		LocalDate date = LocalDate.parse(traveldate);
 		return obj.bookSeats(trainnumber, userId, boarding, destination, noOfSeats, date);
+	}
+	@PostMapping("/newTrains")
+	public void NewTrains(@RequestParam("trainnumber") int trainnumber, 
+			@RequestParam("trainname") String trainname,
+			@RequestParam("traveldate") LocalDate traveldate,
+			@RequestParam("boardingstation") String boardingstation,
+			@RequestParam("destinationstation") String destinationstation,
+	@RequestParam("arrivaltime") String arrivaltime,
+@RequestParam("depaturetime") String depaturetime,
+@RequestParam("amount") int amount,
+@RequestParam("status") String status,
+@RequestParam("route") String route)
+
+			throws Exception {
+
+		ViewTrainsimplementation obj  = new ViewTrainsimplementation();
+		ListTrain obj1 = new ListTrain();
+		obj1.setTrainnumber(trainnumber);
+		obj1.setTrainname(trainname);
+		obj1.setDate(traveldate);
+		obj1.setBoardingstation(boardingstation);
+		obj1.setDestinationstation(destinationstation);
+		obj1.setArrivaltime(arrivaltime);
+		obj1.setDepaturetime(depaturetime);
+		obj1.setRoute(route);
+		obj1.setAmount(amount);
+		obj1.setStatus(status);
+		obj.insertnewTrain(obj1);
 	}
 
 }

@@ -1,8 +1,9 @@
-package com.chainsys.dao;
+package com.chainsys.service;
 
 import org.jdbi.v3.core.Jdbi;
 
-import com.chainsys.TestConnect;
+import com.chainsys.Util.TestConnect;
+import com.chainsys.dao.RegistrationDAO;
 import com.chainsys.exception.DbException;
 
 public class UserService {
@@ -14,5 +15,6 @@ public class UserService {
 		obj.blockUser( userid, status);
 
 	}
+	
 
 }

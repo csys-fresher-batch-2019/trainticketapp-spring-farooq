@@ -1,4 +1,4 @@
-package com.chainsys.booking;
+package com.chainsys.dao.impl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -10,11 +10,12 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.chainsys.TestConnect;
-import com.chainsys.dao.Logger;
+import com.chainsys.Util.Logger;
+import com.chainsys.Util.TestConnect;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
-import com.chainsys.registration.Register;
+import com.chainsys.model.Booking;
+import com.chainsys.model.Register;
 
 public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 

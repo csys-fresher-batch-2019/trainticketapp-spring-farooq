@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.chainsys.booking.Bookingimplements;
+import com.chainsys.dao.impl.Bookingimplements;
 import com.chainsys.exception.DbException;
 
 @WebServlet("/DisplayName")

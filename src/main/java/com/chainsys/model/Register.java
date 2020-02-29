@@ -1,4 +1,4 @@
-package com.chainsys.registration;
+package com.chainsys.model;
 
 import java.sql.Date;
 

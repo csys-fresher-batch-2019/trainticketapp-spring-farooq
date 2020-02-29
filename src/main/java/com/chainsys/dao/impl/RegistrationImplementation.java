@@ -1,4 +1,4 @@
-package com.chainsys.registration;
+package com.chainsys.dao.impl;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,10 +10,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.chainsys.TestConnect;
-import com.chainsys.dao.Logger;
+import com.chainsys.Util.Logger;
+import com.chainsys.Util.TestConnect;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
+import com.chainsys.model.Register;
 
 public class RegistrationImplementation implements com.chainsys.dao.RegistrationDAO {
 /**

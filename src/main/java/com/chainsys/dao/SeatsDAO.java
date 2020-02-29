@@ -1,7 +1,7 @@
 package com.chainsys.dao;
 
 import com.chainsys.exception.DbException;
-import com.chainsys.seats.Seats;;
+import com.chainsys.model.Seats;;
 
 public interface SeatsDAO {
 

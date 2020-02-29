@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chainsys.dao.impl.ViewTrainsimplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.viewtrains.ListTrain;
-import com.chainsys.viewtrains.ViewTrainsimplementation;
+import com.chainsys.model.ListTrain;
 
 @WebServlet("/AddTrainsServlet")
 public class AddTrainsServlet extends HttpServlet {

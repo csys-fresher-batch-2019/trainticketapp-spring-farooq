@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.chainsys.booking.Booking;
 import com.chainsys.exception.DbException;
+import com.chainsys.model.Booking;
 
 
 public interface BookingDAO {

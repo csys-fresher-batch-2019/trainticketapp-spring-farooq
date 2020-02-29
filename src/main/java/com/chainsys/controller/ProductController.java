@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.chainsys.dao.impl.Bookingimplements;
 import com.chainsys.dao.impl.RegistrationImplementation;
+import com.chainsys.dao.impl.Seatsimplementation;
 import com.chainsys.dao.impl.ViewTrainsimplementation;
 import com.chainsys.exception.DbException;
 import com.chainsys.model.ListTrain;
+import com.chainsys.model.Seats;
 @CrossOrigin( origins="*")
 @RestController
 @RequestMapping("api")
@@ -89,5 +91,19 @@ Bookingimplements obj = new Bookingimplements();
 
 		obj.Cancellation(userId, train_number, traveldate, pnrNumber);
 	}
-	
+	@PostMapping("/updateSeats")
+
+	public int updateSeats(
+			@RequestParam("trainnumber") int trainnumber,
+			@RequestParam("availseats") int availableseats,
+			@RequestParam("date") LocalDate traveldate)
+			throws Exception {
+
+Seatsimplementation obj = new Seatsimplementation();
+Seats obj1 = new Seats();
+obj1.setAvailableseats(availableseats);
+obj1.setTrainnumber(trainnumber);
+obj1.setTravelDate(traveldate);
+		return obj.updateSeatsCount(obj1);
+	}
 }

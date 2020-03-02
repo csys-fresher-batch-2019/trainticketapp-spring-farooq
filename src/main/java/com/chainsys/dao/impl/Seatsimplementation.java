@@ -6,13 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import org.springframework.stereotype.Repository;
+
 import com.chainsys.Util.TestConnect;
 import com.chainsys.dao.SeatsDAO;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
 import com.chainsys.model.Seats;;
 
-
+@Repository
 public class Seatsimplementation implements SeatsDAO {
 
 	/**

@@ -1,17 +1,14 @@
 package com.chainsys.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
+import com.chainsys.service.RegisterUserService;
 @WebServlet("/BlockUser")
 public class BlockUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,10 +16,9 @@ public class BlockUser extends HttpServlet {
 
 	int userId = Integer.parseInt(request.getParameter("userid"));
 	int Status = Integer.parseInt(request.getParameter("block"));
-	
-	RegistrationImplementation obj = new RegistrationImplementation();
+	RegisterUserService obj1 = new RegisterUserService();
 	try {
-		int result=obj.blockUser(userId, Status);
+		int result=obj1.blockUser(userId, Status);
 		
 		if(result==1) {
 			

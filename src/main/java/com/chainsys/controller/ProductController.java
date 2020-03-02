@@ -39,7 +39,7 @@ public class ProductController {
 
 		Bookingimplements obj = new Bookingimplements();
 		LocalDate date = LocalDate.parse(traveldate);
-		return obj.bookSeats(trainnumber, userId, boarding, destination, noOfSeats, date);
+		return obj.bookSeats1(trainnumber, userId, boarding, destination, noOfSeats, date);
 	}
 	@PostMapping("/newTrains")
 	public void NewTrains(@RequestParam("trainnumber") int trainnumber, 

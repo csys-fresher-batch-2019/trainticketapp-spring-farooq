@@ -10,13 +10,15 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.chainsys.Util.Logger;
 import com.chainsys.Util.TestConnect;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
+import com.chainsys.exception.SqlException;
 import com.chainsys.model.Booking;
-import com.chainsys.model.Register;
-
+@Repository
 public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 
 	String passengerName;
@@ -24,136 +26,34 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 	String boardingStation;
 	Logger logger = Logger.getInstance();
 	
-	/**
-	 * checking ticket status using PNR number
-	 */
-
-	public void checkStatusByPnrNumber(long pnrNumber) throws DbException {
-
-		String sql = "select curr_status from booking where pnr_num=?";
-		try (Connection connection = TestConnect.getConnection();
-				PreparedStatement stmt = connection.prepareStatement(sql);) {
-			stmt.setLong(1, pnrNumber);
-
-			try (ResultSet row = stmt.executeQuery();) {
-
-				if (row.next()) {
-					String status = row.getString("curr_status");
-					logger.info(status);
-				} else {
-					logger.info("NO DATA");
-				}
-
-			} catch (SQLException e) {
-				throw new DbException(ErrorMessages.INVALID_SQLQUERY);
+	public String getUserName(int user_id) throws DbException {
+		String name = null;
+		String sql = "select user_name from registration where user_id=?";
+		PreparedStatement stmt;
+		try {
+			stmt = TestConnect.getConnection().prepareStatement(sql);
+			stmt.setInt(1, user_id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				name = rs.getString("user_name");
 			}
+		} catch (SQLException e) {
+
 		} catch (Exception e) {
-			throw new DbException(ErrorMessages.ESTABLISH_CONNECTION);
+
 		}
+
+		return name;
 	}
 
-	public void getPassengernames(int noOfSeats) {
 
-	}
-
+	
 	/**
-	 * get train details as train number,source,destination,no of seats to be booked and travel date
-	 * calculating total amount and returning it
-	 * updating seats count
-	 * displaying PNR number
-	 */
-	public int bookSeats(int trainnumber, int userId, String boarding, String destination, int noOfSeats,
-			LocalDate date) throws Exception {
-
-		int a = 0;
-		try (Connection connection = TestConnect.getConnection(); Statement stmt1 = connection.createStatement();) {
-
-			String sql = "select blocklist from registration where user_id=" + userId + "";
-
-			try (ResultSet row = stmt1.executeQuery(sql);) {
-
-				if (row.next()) {
-					int status = row.getInt("blocklist");
-
-					if (status == 0) {
-						System.out.println(trainnumber + "-" + userId + "-" + boarding + "-" + destination + "-" + date
-								+ "-" + noOfSeats);
-
-						CallableStatement stmt = connection.prepareCall("{call PR_booking_status(?,?,?,?,?,?)}");
-						stmt.setInt(1, trainnumber);
-						stmt.setInt(2, userId);
-						stmt.setString(3, boarding);
-						stmt.setString(4, destination);
-						java.sql.Date date2 = java.sql.Date.valueOf(date);
-						stmt.setDate(6, date2);
-						stmt.setInt(5, noOfSeats);
-
-						stmt.executeQuery();
-
-						String sql2 = "select amount from viewtrain where train_num='" + trainnumber + "'";
-
-						ResultSet row3 = connection.createStatement().executeQuery(sql2);
-						if (row3.next()) {
-							int amount = row3.getInt("amount");
-							System.out.println("BOOKING DETAILS");
-							System.out.println("\n");
-
-							String sql4 = "select no_of_seats from booking where travel_date=to_date('" + date2
-									+ "','yyyy-MM-dd') and user_id=" + userId + "";
-
-							ResultSet seats = connection.createStatement().executeQuery(sql4);
-							if (seats.next()) {
-								int seats1 = seats.getInt("no_of_seats");
-								a = seats1 * amount;
-								System.out.println("AMOUNT TO BE PAID=" + a);
-
-								String sql3 = "update booking set amount=" + a + "where travel_date=to_date('" + date2
-										+ "','yyyy-MM-dd') and user_id=" + userId + "and train_num='" + trainnumber + "'";
-								stmt.executeUpdate(sql3);
-							}
-							String sql5 = "select no_of_seats from bookingQueue where travel_date=to_date('" + date2
-									+ "','yyyy-MM-dd') and user_id=" + userId + "";
-
-							ResultSet seats1 = connection.createStatement().executeQuery(sql5);
-
-							if (seats1.next()) {
-								int seats2 = seats1.findColumn("no_of_seats");
-								int b = seats2 * amount;
-								String sql6 = "update bookingQueue set amount=" + b + "where travel_date=to_date('"
-										+ date2 + "','yyyy-MM-dd') and user_id=" + userId + "";
-								stmt.executeUpdate(sql6);
-								System.out.println("\n");
-							}
-						}
-						String sql1 = "select pnr_num,travel_date from booking where travel_date=to_date('" + date
-								+ "','yyyy-MM-dd')";
-
-						ResultSet row1 = connection.createStatement().executeQuery(sql1);
-						while (row1.next()) {
-							int pnr = row1.getInt("pnr_num");
-							Date date1 = row1.getDate("travel_date");
-							Logger.getInstance().info("PNR NUMBER=" + pnr + "\n" + "TRAVEL DATE=" + date1);
-						}
-
-					}
-				} else {
-
-					throw new DbException("YOUR ACCOUNT IS BLOCKED ");
-				}
-				return a;
-
-			} catch (DbException e) {
-				throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
-			}
-		} catch (DbException e) {
-			throw new DbException(ErrorMessages.UNABLE_TO_PROCESS_QUERY);
-		}
-	}
-/**
  * Get user-id and password then checking with DB
  * return valid or invalid as Boolean type 
+	 * @throws SqlException 
  */
-	public boolean login(int userid, String password) throws DbException {
+	public boolean login(int userid, String password) throws DbException, SqlException {
 
 		String sql1 = "select user_id,pass from registration where user_id =? and pass =?";
 		Boolean result = false;
@@ -162,7 +62,9 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 
 			stmt.setInt(1, userid);
 			stmt.setString(2, password);
+			
 			try (ResultSet row = stmt.executeQuery();) {
+				
 				if (row.next()) {
 					int userid1 = row.getInt("user_id");
 					String password1 = row.getString("pass");
@@ -178,7 +80,7 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 				throw new DbException(ErrorMessages.INVALID_SQLQUERY);
 			}
 		} catch (SQLException e) {
-			throw new DbException(ErrorMessages.ESTABLISH_CONNECTION);
+			throw new SqlException(ErrorMessages.ESTABLISH_CONNECTION);
 		} catch (Exception e1) {
 			throw new DbException(ErrorMessages.UNABLE_TO_PROCESS);
 		}
@@ -204,39 +106,7 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 
 		return emailId;
 	}
-	/**
-	 * 
-	 * @param userId
-	 * @return
-	 * Get User-id 
-	 * return Booking details in a List
-	 */
-
-	public ArrayList<Booking> myBookings(int userId) {
-
-		String sql = "select b.pnr_num,b.travel_date,b.no_of_seats,b.curr_status,bq.no_of_seats,bq.curr_status from booking	left join bookingqueue bq on b.user_id= bq.user_id where b.user_id=?";
-		ArrayList<Booking> task = new ArrayList<>();
-		try {
-			PreparedStatement stmt = TestConnect.getConnection().prepareStatement(sql);
-			stmt.setInt(1, userId);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				Booking obj = new Booking();
-				obj.setNoOfSeats(rs.getInt("b.no_of_seats"));
-				obj.setNoOfSeats(rs.getInt("bq.no_of_seats"));
-				obj.setPnrNumber(rs.getLong("p.pnr_num"));
-				obj.setTravel_date(rs.getDate("b.travel_date"));
-				obj.setCurrentStatus(rs.getString("b.curr_status"));
-				obj.setCurrentStatus(rs.getString("bq.curr_status"));
-				task.add(obj);
-			}
-
-		} catch (Exception e) {
-
-		}
-		return task;
-	}
-
+	
 	/**
 	 * Get PNR number to remove details from booking table
 	 * Get user-id,train number,travel date and move to cancellation table 
@@ -298,33 +168,12 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 
 	}
 
-	
-	public String getUserName(int user_id) throws DbException {
-		String name = null;
-		String sql = "select user_name from registration where user_id=?";
-		PreparedStatement stmt;
-		try {
-			stmt = TestConnect.getConnection().prepareStatement(sql);
-			stmt.setInt(1, user_id);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				Register obj = new Register();
-				name = rs.getString("user_name");
-			}
-		} catch (SQLException e) {
-
-		} catch (Exception e) {
-
-		}
-
-		return name;
-	}
-
-	public void deleteBooking(int userid, Date traveldate) {
-		
-	}
-
-
+	/**
+	 * get train details as train number,source,destination,no of seats to be booked and travel date
+	 * calculating total amount and returning it
+	 * updating seats count
+	 * displaying PNR number
+	 */
 	public int bookSeats1(int trainnumber, int userId, String boarding, String destination, int noOfSeats,
 			LocalDate date) throws Exception {
 

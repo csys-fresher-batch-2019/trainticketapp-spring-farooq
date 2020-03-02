@@ -1,5 +1,8 @@
 package com.chainsys.validator;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserValidator {
 	
 	public static void validateUserIdAndTrainNumber(int userId, String trainNumber) throws ValidatorException {

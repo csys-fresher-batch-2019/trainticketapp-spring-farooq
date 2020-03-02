@@ -17,6 +17,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.springframework.stereotype.Component;
+@Component
  public class MailUtil1
 {  
 public static void send(final String from,final String password,String to,String sub,String Msg) throws IOException

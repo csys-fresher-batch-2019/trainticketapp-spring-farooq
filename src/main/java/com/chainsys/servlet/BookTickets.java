@@ -38,7 +38,7 @@ public class BookTickets extends HttpServlet {
 		
 		Bookingimplements obj = new Bookingimplements();
 		try {
-			obj.bookSeats(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
+			obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

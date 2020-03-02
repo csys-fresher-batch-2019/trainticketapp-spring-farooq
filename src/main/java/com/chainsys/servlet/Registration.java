@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.Util.MailUtil1;
 import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
+import com.chainsys.service.RegisterUserService;
 
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
@@ -33,10 +34,10 @@ public class Registration extends HttpServlet {
 		 
 		 if(password.equals(pass)) {
 
-         
-        	 RegistrationImplementation obj = new  RegistrationImplementation();
+				RegisterUserService obj1 = new RegisterUserService();
+
     		 try {
-    			int UserId=obj.registrationInsert(UserName, password, email, phonenumber, gender, dob, city);
+    			int UserId=obj1.registrationInsert(UserName, password, email, phonenumber, gender, dob, city);
     			//request.setAttribute("userid", UserId);
     			MailUtil1.send("railt9740@gmail.com", "Railways123@",email, "TICKETS BOOKING STATUS", "USER ID="+UserId);
     			 request.getRequestDispatcher("/NewIndex.jsp?").forward(request, response);

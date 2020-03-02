@@ -3,8 +3,10 @@ package com.chainsys.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.chainsys.exception.DbException;
+import org.springframework.stereotype.Component;
 
+import com.chainsys.exception.DbException;
+@Component
 public class JdbcUtil {
 
 	public static int executeUpdate(String sql, Object... params) throws DbException {

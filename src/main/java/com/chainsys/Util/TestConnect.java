@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class TestConnect {
 	
 	public static Connection getConnection()throws Exception {

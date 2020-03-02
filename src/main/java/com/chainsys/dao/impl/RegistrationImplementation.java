@@ -10,12 +10,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.chainsys.Util.Logger;
 import com.chainsys.Util.TestConnect;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
 import com.chainsys.model.Register;
-
+@Repository
 public class RegistrationImplementation implements com.chainsys.dao.RegistrationDAO {
 /**
  * Get user-id and phone number and update DB

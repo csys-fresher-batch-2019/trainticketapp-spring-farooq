@@ -8,13 +8,15 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.chainsys.Util.Logger;
 import com.chainsys.Util.TestConnect;
 import com.chainsys.dao.ListTrainDAO;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
 import com.chainsys.model.ListTrain;
-
+@Repository
 public class ViewTrainsimplementation implements ListTrainDAO {
 /**
  * return Train details

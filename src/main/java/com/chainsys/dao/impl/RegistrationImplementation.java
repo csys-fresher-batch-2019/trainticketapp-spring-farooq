@@ -1,7 +1,6 @@
 package com.chainsys.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,9 +9,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.chainsys.Util.Logger;
 import com.chainsys.Util.TestConnect;
 import com.chainsys.exception.DbException;
 import com.chainsys.exception.ErrorMessages;
@@ -22,6 +22,9 @@ public class RegistrationImplementation implements com.chainsys.dao.Registration
 /**
  * Get user-id and phone number and update DB
  */
+	
+	final static Logger logger = LoggerFactory.getLogger(RegistrationImplementation.class);
+
 	public void changephonenum(int userid, long phonenumber) throws DbException {
 
 		String query = "select user_id from registration where user_id=?";
@@ -143,7 +146,7 @@ public class RegistrationImplementation implements com.chainsys.dao.Registration
 
 						task.add(obj);
 					} else {
-					Logger.getInstance().info("invalid city");
+					logger.info("invalid city");
 				}
 
 				}
@@ -173,7 +176,7 @@ public class RegistrationImplementation implements com.chainsys.dao.Registration
 					password = row.getString("pass");
 
 				} else {
-					Logger.getInstance().info("NO DATA");
+					logger.info("NO DATA");
 				}
 				return password;
 			}

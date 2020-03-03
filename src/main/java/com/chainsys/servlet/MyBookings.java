@@ -18,7 +18,9 @@ import javax.servlet.http.HttpSession;
 import com.chainsys.Util.TestConnect;
 import com.chainsys.dao.impl.Bookingimplements;
 import com.chainsys.exception.DbException;
+import com.chainsys.exception.SqlException;
 import com.chainsys.model.Booking;
+import com.chainsys.service.BookingService;
 
 @WebServlet("/MyBookings")
 public class MyBookings extends HttpServlet {
@@ -32,7 +34,10 @@ public class MyBookings extends HttpServlet {
 		HttpSession session = request.getSession();
 		int user_id = (int)session.getAttribute("userid");
 
-		Bookingimplements obj = new Bookingimplements();
+		//Bookingimplements obj = new Bookingimplements();
+		
+		BookingService obj = new BookingService();
+
 		try {
 			
 			ArrayList<Booking> task=obj.myBooking(user_id);
@@ -43,7 +48,7 @@ public class MyBookings extends HttpServlet {
 				System.out.println(booking);
 			}
 			
-		} catch (DbException e) {
+		} catch (DbException | SqlException e) {
 			e.printStackTrace();
 		}
 		

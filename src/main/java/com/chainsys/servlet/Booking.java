@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.chainsys.exception.DbException;
+import com.chainsys.service.BookingService;
 import com.chainsys.Util.MailUtil1;
 import com.chainsys.dao.impl.Bookingimplements;
 @WebServlet("/Booking")
@@ -35,7 +36,8 @@ public class Booking extends HttpServlet {
 		System.out.println(date);
 	
 		PrintWriter out = response.getWriter();
-		Bookingimplements obj = new Bookingimplements();
+		//Bookingimplements obj = new Bookingimplements();
+		BookingService obj = new BookingService();
 		
 		
 

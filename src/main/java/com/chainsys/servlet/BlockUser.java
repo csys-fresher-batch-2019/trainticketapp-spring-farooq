@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.chainsys.exception.DbException;
-import com.chainsys.service.RegisterUserService;
+import com.chainsys.service.RegisterService;
 @WebServlet("/BlockUser")
 public class BlockUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +16,7 @@ public class BlockUser extends HttpServlet {
 
 	int userId = Integer.parseInt(request.getParameter("userid"));
 	int Status = Integer.parseInt(request.getParameter("block"));
-	RegisterUserService obj1 = new RegisterUserService();
+	RegisterService obj1 = new RegisterService();
 	try {
 		int result=obj1.blockUser(userId, Status);
 		

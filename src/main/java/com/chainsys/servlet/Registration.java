@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.Util.MailUtil1;
 import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
-import com.chainsys.service.RegisterUserService;
+import com.chainsys.service.RegisterService;
 
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
@@ -34,7 +34,7 @@ public class Registration extends HttpServlet {
 		 
 		 if(password.equals(pass)) {
 
-				RegisterUserService obj1 = new RegisterUserService();
+				RegisterService obj1 = new RegisterService();
 
     		 try {
     			int UserId=obj1.registrationInsert(UserName, password, email, phonenumber, gender, dob, city);

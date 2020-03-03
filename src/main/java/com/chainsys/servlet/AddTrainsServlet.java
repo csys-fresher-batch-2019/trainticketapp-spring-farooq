@@ -1,9 +1,8 @@
 package com.chainsys.servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +33,6 @@ public class AddTrainsServlet extends HttpServlet {
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		
 		
-		ViewTrainsimplementation obj = new ViewTrainsimplementation();
 		ListTrain It = new ListTrain();
 		try {
 			It.setTrainnumber(trainnumber);
@@ -48,7 +46,8 @@ public class AddTrainsServlet extends HttpServlet {
 			It.setStatus(status);
 			It.setAmount(amount);
 			
-			obj.insertnewTrain(It);
+			ViewTrainsimplementation obj1 = new ViewTrainsimplementation();
+			obj1.insertnewTrain(It);
 		} catch (DbException e) {
 			e.printStackTrace();
 		}

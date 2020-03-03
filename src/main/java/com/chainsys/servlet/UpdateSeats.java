@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.dao.impl.Seatsimplementation;
 import com.chainsys.exception.DbException;
 import com.chainsys.model.Seats;
+import com.chainsys.service.SeatsService;
 
 @WebServlet("/UpdateSeats")
 public class UpdateSeats extends HttpServlet {
@@ -28,7 +29,8 @@ public class UpdateSeats extends HttpServlet {
 		String date = request.getParameter("traveldate");
 		LocalDate date1 = LocalDate.parse(date);
 
-		Seatsimplementation obj = new Seatsimplementation();
+		//Seatsimplementation obj = new Seatsimplementation();
+		SeatsService obj = new SeatsService();
 		Seats obj1 = new Seats();
 		obj1.setAvailableseats(seatsCount);
 		obj1.setTrainnumber(trainNumber);

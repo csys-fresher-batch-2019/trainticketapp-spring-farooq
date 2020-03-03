@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.chainsys.dao.impl.Bookingimplements;
+import com.chainsys.service.BookingService;
 
 @WebServlet("/BookTickets")
 public class BookTickets extends HttpServlet {
@@ -36,7 +37,9 @@ public class BookTickets extends HttpServlet {
 		
 		System.out.println(date);
 		
-		Bookingimplements obj = new Bookingimplements();
+//		Bookingimplements obj = new Bookingimplements();
+		BookingService obj = new BookingService();
+
 		try {
 			obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
 		} catch (Exception e) {

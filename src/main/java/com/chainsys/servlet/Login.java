@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.chainsys.dao.impl.Bookingimplements;
 import com.chainsys.exception.DbException;
+import com.chainsys.service.BookingService;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -27,7 +28,9 @@ public class Login extends HttpServlet {
 		int userid = Integer.parseInt(request.getParameter("userid"));
 		String password = request.getParameter("password");
 		
-		Bookingimplements obj = new Bookingimplements();
+//		Bookingimplements obj = new Bookingimplements();
+		BookingService obj = new BookingService();
+
 		try {
 			boolean result=obj.login(userid, password);
 			if(result==true) {

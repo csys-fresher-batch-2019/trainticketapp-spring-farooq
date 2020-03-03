@@ -13,7 +13,7 @@ public interface BookingDAO {
 
 	public boolean login(int userid,String password)throws DbException, SqlException;
 	 
-	public void Cancellation(int user_id, int train_number,LocalDate traveldate,long pnrNumber) throws DbException, SqlException;
+	public void Cancellation(int user_id, int train_number,LocalDate traveldate,long pnrNumber) throws DbException,SQLException;
 	
 	public ArrayList<Booking> myBooking(int user_id) throws DbException, SqlException;
 	

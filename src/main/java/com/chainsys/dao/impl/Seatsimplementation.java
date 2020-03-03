@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.chainsys.Util.TestConnect;
@@ -20,6 +22,8 @@ public class Seatsimplementation implements SeatsDAO {
 	/**
 	 * Get seats count for particular train and date
 	 */
+	final static Logger logger = LoggerFactory.getLogger(RegistrationImplementation.class);
+
 	public int updateSeatsCount(Seats s) throws DbException {
 	
 		

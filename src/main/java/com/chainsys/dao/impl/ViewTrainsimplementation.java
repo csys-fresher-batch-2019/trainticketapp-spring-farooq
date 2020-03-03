@@ -8,9 +8,10 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.chainsys.Util.Logger;
 import com.chainsys.Util.TestConnect;
 import com.chainsys.dao.ListTrainDAO;
 import com.chainsys.exception.DbException;
@@ -21,6 +22,8 @@ public class ViewTrainsimplementation implements ListTrainDAO {
 /**
  * return Train details
  */
+	final static Logger logger = LoggerFactory.getLogger(RegistrationImplementation.class);
+
 	public ArrayList<ListTrain> getTrainsByArrivalTime() throws DbException {
 
 		try (
@@ -109,7 +112,7 @@ public class ViewTrainsimplementation implements ListTrainDAO {
 
 					task.add(obj);
 				} else {
-					Logger.getInstance().info("INVALID TRAIN NAME");
+					logger.info("INVALID TRAIN NAME");
 				}
 			}
 		} catch (SQLException e) {

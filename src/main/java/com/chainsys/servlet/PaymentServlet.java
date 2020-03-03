@@ -19,7 +19,7 @@ import com.chainsys.dao.impl.Bookingimplements;
 @WebServlet("/PaymentServlet")
 public class PaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 String rst="";
+	 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,14 +29,8 @@ public class PaymentServlet extends HttpServlet {
 		long mobileNo = Long.parseLong(request.getParameter("mobileNo"));
 
 
-		Map result=WalletAPI.payWallet(mobileNo, merchantId, Amount);
-		String status=(String) result.get("status");
-		if(status.equals("SUCCESS")) {
-			 rst = "Transaction Successfull";
+		String result="Transaction Successfull";
 
-		}else {
-			rst = "Transaction failed";
-		}
 		
 
 		String emailId = null;
@@ -57,7 +51,7 @@ public class PaymentServlet extends HttpServlet {
 				"SUCCESSFULLY BOOKED \n AMOUNT PAID='" + Amount + "'");
 		String url = request.getParameter("redirect_url");
 		System.out.println(url);
-		String param = "?status=" +rst;
+		String param = "?status=" + result;
 		response.sendRedirect(url + param);
 	}
 

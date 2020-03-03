@@ -34,12 +34,9 @@ public class PaymentServlet extends HttpServlet {
 		if(status.equals("SUCCESS")) {
 			 rst = "Transaction Successfull";
 
-		}else if(status.equals("")) {
-			
 		}else {
-			
+			rst = "Transaction failed";
 		}
-
 		
 
 		String emailId = null;
@@ -60,7 +57,7 @@ public class PaymentServlet extends HttpServlet {
 				"SUCCESSFULLY BOOKED \n AMOUNT PAID='" + Amount + "'");
 		String url = request.getParameter("redirect_url");
 		System.out.println(url);
-		String param = "?status=" + rst;
+		String param = "?status=" +rst;
 		response.sendRedirect(url + param);
 	}
 

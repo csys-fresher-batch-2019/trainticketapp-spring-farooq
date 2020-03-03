@@ -6,9 +6,11 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.stereotype.Service;
 import com.chainsys.Util.TestConnect;
 import com.chainsys.dao.RegistrationDAO;
+import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
 @Service
 public class RegisterService {
+	
 	private Jdbi jdbi = TestConnect.getJdbi();
 	RegistrationDAO obj=jdbi.onDemand(RegistrationDAO.class);
 
@@ -20,8 +22,8 @@ public class RegisterService {
 	}
 	public int registrationInsert(String username, String password, String emailid, long phonenumber, String gender,
 			LocalDate dob, String cityname) throws DbException {
-		
-		return obj.registrationInsert(username, password, emailid, phonenumber, gender, dob, cityname);
+		RegistrationDAO obj1 = new RegistrationImplementation();
+		return obj1.registrationInsert(username, password, emailid, phonenumber, gender, dob, cityname);
 		
 	}
 

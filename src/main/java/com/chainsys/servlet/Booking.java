@@ -52,6 +52,7 @@ if(amount==0) {
 				out.println("your account is blocked Please Contact Us");
 			}
 			else
+				
 			response.sendRedirect("payment.jsp?amount="+amount);
 
 			

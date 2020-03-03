@@ -293,9 +293,9 @@ e.printStackTrace();
 			stmt.executeUpdate(sql1);
 			try (ResultSet row1 = stmt.executeQuery(sql1);) {
 				if (row1.next()) {
-					System.out.println("NOTE DOWN THE USER_ID FOR BOOKING");
+					logger.info("NOTE DOWN THE USER_ID FOR BOOKING");
 					user_id = row1.getInt("user_id");
-					System.out.println("USER-ID=" + user_id);
+					logger.info("USER-ID=" + user_id);
 				}
 			} catch (Exception e) {
 				throw new DbException(ErrorMessages.INVALID_DATA);

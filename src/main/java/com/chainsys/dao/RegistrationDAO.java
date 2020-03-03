@@ -13,6 +13,7 @@ import com.chainsys.model.Register;
 
 public interface RegistrationDAO {
 	
+	
 	public int registrationInsert(String username,String password,String emailid,long phonenumber,String gender,LocalDate dob,String cityname) throws DbException;
 	
 	@SqlUpdate("update registration set pass= :password where email_id= :email")

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ValidatorException extends Exception {
 
+	
+	private static final long serialVersionUID = 1L;
+
 	public ValidatorException(int invalidUserId) {
 
 	}

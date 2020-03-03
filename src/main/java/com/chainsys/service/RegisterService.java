@@ -12,9 +12,8 @@ import com.chainsys.exception.DbException;
 public class RegisterService {
 	
 	private Jdbi jdbi = TestConnect.getJdbi();
-	RegistrationDAO obj=jdbi.onDemand(RegistrationDAO.class);
 
-
+	RegistrationDAO obj = new RegistrationImplementation();
 	public int blockUser(int userid, int status) throws DbException {
 
 		return obj.blockUser( userid, status);
@@ -22,8 +21,8 @@ public class RegisterService {
 	}
 	public int registrationInsert(String username, String password, String emailid, long phonenumber, String gender,
 			LocalDate dob, String cityname) throws DbException {
-		RegistrationDAO obj1 = new RegistrationImplementation();
-		return obj1.registrationInsert(username, password, emailid, phonenumber, gender, dob, cityname);
+
+		return obj.registrationInsert(username, password, emailid, phonenumber, gender, dob, cityname);
 		
 	}
 

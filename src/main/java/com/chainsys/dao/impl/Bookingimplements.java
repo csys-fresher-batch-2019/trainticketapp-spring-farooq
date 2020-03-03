@@ -202,8 +202,7 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 						try (ResultSet row3 = connection.createStatement().executeQuery(sql2);) {
 							if (row3.next()) {
 								int amount = row3.getInt("amount");
-								System.out.println("BOOKING DETAILS");
-								System.out.println("\n");
+								logger.info("BOOKING DETAILS");
 
 								String sql4 = "select no_of_seats from booking where travel_date=to_date('" + date2
 										+ "','yyyy-MM-dd') and user_id=" + userId + "";
@@ -212,10 +211,10 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 									if (seats.next()) {
 										int seats1 = seats.getInt("no_of_seats");
 										a = seats1 * amount;
-										System.out.println("AMOUNT TO BE PAID=" + a);
+										logger.info("AMOUNT TO BE PAID=" + a);
 
 										String sql3 = "update booking set amount=" + a + "where travel_date=to_date('"
-												+ date2 + "','yyyy-MM-dd') and user_id=" + userId + "";
+												+ date2 + "','yyyy-MM-dd') and user_id=" + userId +" ";
 										stmt.executeUpdate(sql3);
 									}
 									String sql5 = "select no_of_seats from bookingQueue where travel_date=to_date('"
@@ -230,7 +229,6 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 													+ "where travel_date=to_date('" + date2
 													+ "','yyyy-MM-dd') and user_id=" + userId + "";
 											stmt.executeUpdate(sql6);
-											System.out.println("\n");
 										}
 
 										String sql1 = "select pnr_num,travel_date from booking where travel_date=to_date('"

@@ -9,6 +9,7 @@ import com.chainsys.dao.RegistrationDAO;
 import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
 @Service
+
 public class RegisterService {
 	
 	private Jdbi jdbi = TestConnect.getJdbi();

@@ -15,6 +15,7 @@ import com.chainsys.exception.DbException;
 import com.chainsys.service.BookingService;
 import com.chainsys.Util.MailUtil1;
 import com.chainsys.dao.impl.Bookingimplements;
+
 @WebServlet("/Booking")
 public class Booking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,42 +24,31 @@ public class Booking extends HttpServlet {
 			throws ServletException, IOException {
 
 		int trainNumber = Integer.parseInt(request.getParameter("trainnumber"));
-		System.out.println(trainNumber);
 		int userId = Integer.parseInt(request.getParameter("userId"));
-		System.out.println(userId);
 		String SourceStation = request.getParameter("source");
-		System.out.println(SourceStation);
 		String destStation = request.getParameter("destination");
-		System.out.println(destStation);
 		int noOfSeats = Integer.parseInt(request.getParameter("NoOfSeats"));
-		System.out.println(noOfSeats);
 		LocalDate date = LocalDate.parse((request.getParameter("Traveldate")));
-		System.out.println(date);
-	
+
 		PrintWriter out = response.getWriter();
-		//Bookingimplements obj = new Bookingimplements();
+		out.println("hi");
 		BookingService obj = new BookingService();
-		
-		
 
 		try {
-			
-			int amount=obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
-			
 
-System.out.println(amount);
+			int amount = obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
 
-if(amount==0) {
+			System.out.println(amount);
+
+			if (amount == 0) {
 				out.println("your account is blocked Please Contact Us");
-			}
-			else
-				
-			response.sendRedirect("payment.jsp?amount="+amount);
+			} else
 
-			
+				response.sendRedirect("payment.jsp?amount=" + amount);
+
 		} catch (Exception e) {
-			//out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN\n USER CN ONLY BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
-			e.printStackTrace();
+			 out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
+			//e.printStackTrace();
 		}
 
 	}

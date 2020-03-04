@@ -11,16 +11,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%String name = request.getParameter("status");
+<%String result = request.getParameter("status");
 
-if(name.equals("Transaction Successfull")){
+if(result.equals("Transaction Successfull")){
 	Logger.getInstance().info("TRANSACTION SUCCESSFULL");
-}else{
+}
+else
+{
 RegistrationImplementation obj = new RegistrationImplementation();
 obj.deleteUser();
 Logger.getInstance().info("BANK DOES NOT RESPOND YOUR TRANSACTION");
 }
 %>
-<h2><%=name%></h2>
+<h2><%=result%></h2>
 </body>
 </html>

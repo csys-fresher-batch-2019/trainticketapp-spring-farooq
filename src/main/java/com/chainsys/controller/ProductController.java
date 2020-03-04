@@ -84,28 +84,29 @@ RegistrationImplementation obj = new RegistrationImplementation();
 
 	public void cancellation(@RequestParam("userid") int userId,
 			@RequestParam("trainnumber") int train_number,
-			@RequestParam("traveldate") LocalDate traveldate,
+			@RequestParam("traveldate") String traveldate,
 			@RequestParam("pnrNumber") long pnrNumber
 			)
 			throws Exception {
 
 Bookingimplements obj = new Bookingimplements();
-
-		obj.Cancellation(userId, train_number, traveldate, pnrNumber);
+LocalDate date = LocalDate.parse(traveldate);
+		obj.Cancellation(userId, train_number, date, pnrNumber);
 	}
 	@PutMapping("/updateSeats")
 
 	public int updateSeats(
 			@RequestParam("trainnumber") int trainnumber,
 			@RequestParam("availseats") int availableseats,
-			@RequestParam("date") LocalDate traveldate)
+			@RequestParam("date") String traveldate)
 			throws Exception {
 
 Seatsimplementation obj = new Seatsimplementation();
 Seats obj1 = new Seats();
 obj1.setAvailableseats(availableseats);
 obj1.setTrainnumber(trainnumber);
-obj1.setTravelDate(traveldate);
+LocalDate date = LocalDate.parse(traveldate);
+obj1.setTravelDate(date);
 		return obj.updateSeatsCount(obj1);
 	}
 }

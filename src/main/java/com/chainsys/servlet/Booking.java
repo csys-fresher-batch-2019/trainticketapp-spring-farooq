@@ -46,7 +46,7 @@ public class Booking extends HttpServlet {
 				response.sendRedirect("payment.jsp?amount=" + amount);
 
 		} catch (Exception e) {
-//			 out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
+		 out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
 	e.printStackTrace();
 		}
 

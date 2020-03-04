@@ -2,7 +2,7 @@ package com.chainsys.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.io.StringWriter;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
@@ -11,10 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.exception.DbException;
 import com.chainsys.service.BookingService;
-import com.chainsys.Util.MailUtil1;
-import com.chainsys.dao.impl.Bookingimplements;
 
 @WebServlet("/Booking")
 public class Booking extends HttpServlet {
@@ -47,7 +44,12 @@ public class Booking extends HttpServlet {
 
 		} catch (Exception e) {
 		 out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
-	e.printStackTrace();
+	out.println();
+	StringWriter sw = new StringWriter();
+	PrintWriter pw = new PrintWriter(sw);
+	e.printStackTrace(pw);
+	sw.toString();
+	
 		}
 
 	}

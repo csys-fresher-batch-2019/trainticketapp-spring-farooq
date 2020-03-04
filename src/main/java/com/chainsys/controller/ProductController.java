@@ -80,7 +80,7 @@ public class ProductController {
 RegistrationImplementation obj = new RegistrationImplementation();
 		return obj.blockUser(userId, status);
 	}
-	@DeleteMapping("/cancellation")
+	@PostMapping("/cancellation")
 
 	public void cancellation(@RequestParam("userid") int userId,
 			@RequestParam("trainnumber") int train_number,
@@ -90,7 +90,9 @@ RegistrationImplementation obj = new RegistrationImplementation();
 			throws Exception {
 
 Bookingimplements obj = new Bookingimplements();
+
 LocalDate date = LocalDate.parse(traveldate);
+
 		obj.Cancellation(userId, train_number, date, pnrNumber);
 	}
 	@PutMapping("/updateSeats")

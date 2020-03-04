@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.chainsys.model.ListTrain"%>
 
@@ -188,36 +188,33 @@ span.psw {
 				<a class="navbar-brand" href="AdminIndex.jsp">BookRail</a>
 				<ul class="nav navbar-nav navbar-right">
 
-					<%
+			  <%
 						if (name == null) {
-					%>
-
-<li><a href="Registration.jsp">
-
-<span
-							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					%>  
+					 
+	
+					<li><a href="Registration.jsp"> <span
+							class="glyphicon glyphicon-user"></span> Sign Up
+					</a></li>
 					<li><a href="Login.jsp"><span
 							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
-					<%
-						} else {
-					%>
-				
-			</div>
-					<span class="glyphicon glyphicon-user"></span><c class="color"/> WELCOME <%=name%>
-					<a href="">Add Trains</a>
-					<a href="">Update Trains</a>
-					<a href="UpdateSeatsCount.jsp">Update seats Count</a>
-										<a href="BlockUser.jsp">Block User</a>
-					
-			<a href="LogoutServlet"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-			
-
-
-
-			<%
-				}
+			 
+			 <%
+						}else{
 			%>
+			</div>
+			<span class="glyphicon glyphicon-user"></span>
+			<c class="color" />
+			WELCOME <%=name %>
+			<a href="">Add Trains</a> <a href="">Update Trains</a> <a
+				href="UpdateSeatsCount.jsp">Update seats Count</a> <a
+				href="BlockUser.jsp">Block User</a> <a href="LogoutServlet"><span
+				class="glyphicon glyphicon-log-out"></span> Logout</a>
+
+<%
+}%>
+
+
 
 
 			</ul>
@@ -227,5 +224,5 @@ span.psw {
 	<h2>
 		<center>Admin Page</center>
 	</h2>
-	</body>
+</body>
 </html>

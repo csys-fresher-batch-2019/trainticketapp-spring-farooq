@@ -29,7 +29,7 @@ public class Booking extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		BookingService obj = new BookingService();
-out.println("hi");
+		out.println("hi");
 		try {
 
 			int amount = obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
@@ -41,8 +41,9 @@ out.println("hi");
 				response.sendRedirect("payment.jsp?amount=" + amount);
 
 		} catch (Exception e) {
-			out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
-e.printStackTrace();
+			out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS "
+					+ e.getMessage());
+
 		}
 
 	}

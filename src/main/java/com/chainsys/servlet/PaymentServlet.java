@@ -1,6 +1,7 @@
 package com.chainsys.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -29,10 +30,10 @@ public class PaymentServlet extends HttpServlet {
 		long mobileNo = Long.parseLong(request.getParameter("mobileNo"));
 
 
-		String result="Transaction Successfull";
+		String result="failed";
 
-		
-
+		PrintWriter out = response.getWriter();
+out.println("hi");
 		String emailId = null;
 		HttpSession session = request.getSession();
 		int userId = (int) session.getAttribute("userid");
@@ -41,18 +42,19 @@ public class PaymentServlet extends HttpServlet {
 		
 		try {
 			emailId = obj.getemailId(userId);
+			MailUtil1.send("railt9740@gmail.com", "Railways123@", emailId, "TICKETS BOOKING STATUS",
+					"SUCCESSFULLY BOOKED \n AMOUNT PAID='" + Amount + "'");
+			String url = request.getParameter("redirect_url");
+			System.out.println(url);
+			String param = "?status=" + result;
+			response.sendRedirect(url + param);
 		} catch (DbException e1) {
 
 		} catch (SqlException e) {
 			e.printStackTrace();
 		}
 
-		MailUtil1.send("railt9740@gmail.com", "Railways123@", emailId, "TICKETS BOOKING STATUS",
-				"SUCCESSFULLY BOOKED \n AMOUNT PAID='" + Amount + "'");
-		String url = request.getParameter("redirect_url");
-		System.out.println(url);
-		String param = "?status=" + result;
-		response.sendRedirect(url + param);
+		
 	}
 
 }

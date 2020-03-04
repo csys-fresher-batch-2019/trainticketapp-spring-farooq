@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,7 +71,7 @@ public class ProductController {
 		obj1.setStatus(status);
 		obj.insertnewTrain(obj1);
 	}
-	@PostMapping("/block")
+	@PutMapping("/block")
 
 	public int block(@RequestParam("userid") int userId,
 			@RequestParam("status") int status)
@@ -78,7 +80,7 @@ public class ProductController {
 RegistrationImplementation obj = new RegistrationImplementation();
 		return obj.blockUser(userId, status);
 	}
-	@PostMapping("/cancellation")
+	@DeleteMapping("/cancellation")
 
 	public void cancellation(@RequestParam("userid") int userId,
 			@RequestParam("trainnumber") int train_number,
@@ -91,7 +93,7 @@ Bookingimplements obj = new Bookingimplements();
 
 		obj.Cancellation(userId, train_number, traveldate, pnrNumber);
 	}
-	@PostMapping("/updateSeats")
+	@PutMapping("/updateSeats")
 
 	public int updateSeats(
 			@RequestParam("trainnumber") int trainnumber,

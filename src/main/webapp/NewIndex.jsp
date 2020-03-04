@@ -98,7 +98,8 @@ color:#ffffff ;
 <body>
 	<%
 		String name = (String) session.getAttribute("name");
-
+	String result = (String) session.getAttribute("result");
+	
 	%>
 
 
@@ -181,6 +182,12 @@ color:#ffffff ;
 			<div class="heading">
 				<label class="heading-font">
 					<h3>PLAN YOUR JOURNEY</h3>
+<%
+if(result!=null){
+	out.print(result);
+}
+%>					
+			
 				</label> <br> <img alt="Rail Icon" class="mobhide" src="rail_icon.png">
 
 			</div>

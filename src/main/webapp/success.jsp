@@ -13,6 +13,8 @@
 <body>
 <%String result = request.getParameter("status");
 
+
+
 if(result.equals("Transaction Successfull")){
 	Logger.getInstance().info("TRANSACTION SUCCESSFULL");
 }
@@ -22,7 +24,9 @@ RegistrationImplementation obj = new RegistrationImplementation();
 obj.deleteUser();
 Logger.getInstance().info("BANK DOES NOT RESPOND YOUR TRANSACTION");
 }
+
+request.setAttribute("result",result);
 %>
-<h2><%=result%></h2>
+
 </body>
 </html>

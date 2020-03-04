@@ -29,12 +29,10 @@ public class Booking extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		BookingService obj = new BookingService();
-
+out.println("hi");
 		try {
 
 			int amount = obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);
-
-			System.out.println(amount);
 
 			if (amount == 0) {
 				out.println("your account is blocked Please Contact Us");
@@ -43,13 +41,8 @@ public class Booking extends HttpServlet {
 				response.sendRedirect("payment.jsp?amount=" + amount);
 
 		} catch (Exception e) {
-		 out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
-	out.println();
-	StringWriter sw = new StringWriter();
-	PrintWriter pw = new PrintWriter(sw);
-	e.printStackTrace(pw);
-	sw.toString();
-	
+			out.println("YOU CANT BOOK MORE SEATS ON SAME DAY ON SAME TRAIN .BOOK MAXIMUN 5 SEATS ON EACH BOOKINGS ");
+e.printStackTrace();
 		}
 
 	}

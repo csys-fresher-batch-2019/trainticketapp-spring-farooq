@@ -36,7 +36,10 @@ public class ProductController {
 	@PostMapping("/bookings")
 
 	public int bookings(@RequestParam("userid") int userId,
-			@RequestParam("trainnumber") int trainnumber, @RequestParam("source") String boarding,@RequestParam("destination") String destination,@RequestParam("noofseats") int noOfSeats,@RequestParam("date") String traveldate)
+			@RequestParam("trainnumber") int trainnumber, 
+			@RequestParam("source") String boarding,
+			@RequestParam("destination") String destination,
+			@RequestParam("noofseats") int noOfSeats,@RequestParam("date") String traveldate)
 			throws Exception {
 
 		Bookingimplements obj = new Bookingimplements();

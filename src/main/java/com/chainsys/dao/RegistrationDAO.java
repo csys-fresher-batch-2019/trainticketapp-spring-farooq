@@ -2,14 +2,13 @@ package com.chainsys.dao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.jdbi.v3.sqlobject.customizer.Bind;
-import org.jdbi.v3.sqlobject.statement.SqlQuery;
-import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import com.chainsys.exception.DbException;
 import com.chainsys.model.Register;
+
+
+
 
 public interface RegistrationDAO {
 	

@@ -1,7 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.chainsys.model.ListTrain"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <html>
@@ -173,9 +173,9 @@ span.psw {
 <title>Insert title here</title>
 </head>
 <body>
-	<%
+	<%-- <%
 		String name = (String) session.getAttribute("name");
-	%>
+	%> --%>
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -188,33 +188,27 @@ span.psw {
 				<a class="navbar-brand" href="AdminIndex.jsp">BookRail</a>
 				<ul class="nav navbar-nav navbar-right">
 
-			  <%
-						if (name == null) {
-					%>  
-					 
-	
-					<li><a href="Registration.jsp"> <span
-							class="glyphicon glyphicon-user"></span> Sign Up
-					</a></li>
-					<li><a href="Login.jsp"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-			 
-			 <%
-						}else{
-			%>
+					<c:if test="${empty name}">
+						<li><a href="Registration.jsp"> <span
+								class="glyphicon glyphicon-user"></span> Sign Up
+						</a></li>
+						<li><a href="Login.jsp"><span
+								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+					</c:if>
 			</div>
-			<span class="glyphicon glyphicon-user"></span>
-			<c class="color" />
-			WELCOME <%=name %>
-			<a href="">Add Trains</a> <a href="">Update Trains</a> <a
-				href="UpdateSeatsCount.jsp">Update seats Count</a> <a
-				href="BlockUser.jsp">Block User</a> <a href="LogoutServlet"><span
-				class="glyphicon glyphicon-log-out"></span> Logout</a>
-
-<%
-}%>
-
-
+			<c:if test="${not empty name}">
+				<span class="glyphicon glyphicon-user"></span>
+				<c class="color" />
+			
+			WELCOME ${name}
+			<a href="">Add Trains</a>
+				<a href="">Update Trains</a>
+				<a href="UpdateSeatsCount.jsp">Update seats Count</a>
+				<a href="BlockUser.jsp">Block User</a>
+				<a href="LogoutServlet"><span
+					class="glyphicon glyphicon-log-out"></span> Logout</a>
+			</c:if>
 
 
 			</ul>

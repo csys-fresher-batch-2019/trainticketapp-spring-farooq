@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -20,14 +21,7 @@
 
 		</select>
 		<button type="submit">Done</button>
-
-		<%
-			String result = (String) request.getAttribute("info");
-			if (result != null) {
-				PrintWriter out1 = response.getWriter();
-				out1.println(result);
-			}
-		%>
+<%-- <c:if test="${not empty info} "></c:if> --%>
 
 	</form>
 </body>

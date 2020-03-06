@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@page import="java.time.LocalDate"%>
 <%@page import="com.chainsys.dao.impl.ViewTrainsimplementation"%>
 <%@page import="com.chainsys.dao.impl.Bookingimplements"%>
@@ -80,8 +82,9 @@ span.psw {
 		width: 100%;
 	}
 }
-.orange{
-color:#ffffff ;
+
+.orange {
+	color: #ffffff;
 }
 </style>
 
@@ -120,54 +123,52 @@ color:#ffffff ;
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="NewIndex.jsp">Home</a></li>
 					<li><a href="">About</a></li>
+					<c:if test="${empty name}">
 
-					<%
-						if (name == null) {
-					%>
-					<li><a href="Login.jsp">MyBookings</a></li>
-					<%
-						} else {
-					%>
-					<li><a href="MyBookings">MyBookings</a></li>
-					<%
-						}
-					%>
+						<li><a href="Login.jsp">MyBookings</a></li>
+					</c:if>
+					<c:if test="${not empty name}">
+						<li><a href="MyBookings">MyBookings</a></li>
+					</c:if>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-
-					<%
+					<c:choose>
+						<c:when test="${empty name}">
+							<%-- <%
 						if (name == null) {
-					%>
+					%> --%>
 
 
 
-					<li><a href="Registration.jsp"><span
-							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li><a href="Login.jsp"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<li><a href="adminlogin.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>Admin Login</a></li>
+							<li><a href="Registration.jsp"><span
+									class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+							<li><a href="Login.jsp"><span
+									class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							<li><a href="adminlogin.jsp"><span
+									class="glyphicon glyphicon-log-in"></span>Admin Login</a></li>
 
-					<%
+						</c:when>
+						<%-- <%
 						} else {
 					%>
+ --%>
+						<c:otherwise>
+							<li><div text-align:right>
+									<span class="glyphicon glyphicon-user"></span>
+									<c class="orange"> WELCOME ${name} 
+								</div></li>
+							<li><a href="LogoutServlet"><span
+									class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
-					<li><div text-align:right>
-							<span class="glyphicon glyphicon-user"></span>
-							<c class="orange"> WELCOME <%=name%>
-						</div></li>
-					<li><a href="LogoutServlet"><span
-							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
 
-					
-
-					<%
+						</c:otherwise>
+						<%-- 	<%
 						}
 					%>
-
-
+ --%>
+					</c:choose>
 				</ul>
 			</div>
 		</div>
@@ -182,16 +183,18 @@ color:#ffffff ;
 			<div class="heading">
 				<label class="heading-font">
 					<h3>PLAN YOUR JOURNEY</h3>
-<%
+					<c:if test="${not empty result}"> 
+					<%-- 
+					<%
 if(result!=null){
 	out.print(result);
 }
-%>					
-			
+%> --%>
+</c:if>
 				</label> <br> <img alt="Rail Icon" class="mobhide" src="rail_icon.png">
 
 			</div>
-			
+
 			<%
 			ViewTrainsimplementation obj = new ViewTrainsimplementation();
 			ArrayList<String> list1=obj.getTrainDetailsByBoardingStation();
@@ -203,31 +206,28 @@ if(result!=null){
 						<%for(String li : list1){ %>
 						<option value="<%=li%>"><%=li %></option>
 						<%} %>
-					</datalist></label><br>
-					
-					
-				<br> <label> <input list="destination_station_list"
-					name="destination" placeholder="TO"> <datalist
-						id="destination_station_list">
-			<%
+					</datalist></label><br> <br> <label> <input
+					list="destination_station_list" name="destination" placeholder="TO">
+					<datalist id="destination_station_list">
+						<%
 			ViewTrainsimplementation obj1 = new ViewTrainsimplementation();
 			ArrayList<String> list=obj1.getTrainDetailsByDestinationStation();
 			%>
-			<%for(String li : list){ %>
+						<%for(String li : list){ %>
 						<option value="<%=li%>"><%=li %></option>
+						
 						<%} %>
-			<%
+						
+						<%
 			LocalDate date = LocalDate.now();
 			%>
-					</datalist></label><br>
-				<br> <label> <input type="date" name="Traveldate"
-					min="<%=date %>" max="2020-05-02" placeholder="Select Travel Date">
-					<br></label> <br>
+					</datalist></label><br> <br> <label> <input type="date"
+					name="Traveldate" min="<%=date %>" max="2020-05-02"
+					placeholder="Select Travel Date"> <br></label> <br>
 				<button type="submit" class="cancelbtn">FIND TRAINS</button>
 
 			</form>
-			<br>
-			<br>
+			<br> <br>
 
 		</div>
 	</div>
@@ -239,7 +239,7 @@ if(result!=null){
 		<%--Assigning ArrayList object containing Employee data to the local object --%>
 
 		<table class="table" cellspacing="10" border="1">
-				<% 		
+			<% 		
 			
 				if (trainList != null) {
 		%>
@@ -259,34 +259,35 @@ if(result!=null){
 				</tr>
 			</thead>
 
-		
-		<%			
+
+			<%			
 					for (ListTrain trainDetails : trainList) {
 
 						%>
-						<tr>
-							<td><%=trainDetails.getTrainnumber()%></td>
-							<td><%=trainDetails.getTrainname()%></td>
-							<td><%=trainDetails.getDate()%></td>
-							<td><%=trainDetails.getBoardingstation()%></td>
-							<td><%=trainDetails.getDestinationstation()%></td>
-							<td><%=trainDetails.getArrivaltime()%></td>
-							<td><%=trainDetails.getDepaturetime()%></td>
-							<td><%=trainDetails.getRoute()%></td>
-							<td><%=trainDetails.getStatus()%></td>
-							<td><%=trainDetails.getAmount()%></td>
+			<tr>
+				<td><%=trainDetails.getTrainnumber()%></td>
+				<td><%=trainDetails.getTrainname()%></td>
+				<td><%=trainDetails.getDate()%></td>
+				<td><%=trainDetails.getBoardingstation()%></td>
+				<td><%=trainDetails.getDestinationstation()%></td>
+				<td><%=trainDetails.getArrivaltime()%></td>
+				<td><%=trainDetails.getDepaturetime()%></td>
+				<td><%=trainDetails.getRoute()%></td>
+				<td><%=trainDetails.getStatus()%></td>
+				<td><%=trainDetails.getAmount()%></td>
 
-							<%
+				<%
 								
 										if (name==null) {%>
-											<td><a href="Login.jsp?">BOOK</a></td>
-											</tr>
-										<%
+				<td><a href="Login.jsp?">BOOK</a></td>
+			</tr>
+			<%
 							}
 										else {
 											%>
-											<td><a href="Booking.jsp?trainnumber=<%=trainDetails.getTrainnumber()%>">BOOK</a></td>
-											<%
+			<td><a
+				href="Booking.jsp?trainnumber=<%=trainDetails.getTrainnumber()%>">BOOK</a></td>
+			<%
 											}
 							
 								

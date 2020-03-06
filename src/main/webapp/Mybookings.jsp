@@ -1,6 +1,7 @@
 <%@page import="com.chainsys.model.Booking"%>
 <%@page import="com.chainsys.model.ListTrain"%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <html>
@@ -44,56 +45,24 @@
 
 	<table cellspacing="2" cellpadding="2" border="1">
 
-		<%
-			ArrayList<Booking> myBooking = (ArrayList) request.getAttribute("booklist");
-		%>
 
-
-		<%
-			// Iterating through subjectList
-
-			if (myBooking != null) {
-		%>
 		<tr>
 
 			<th>PNR NUMBER</th>
 			<th>TRAVEL DATE</th>
 			<th>NO OF SEATS</th>
 			<th>CURRENT STATUS</th>
-			
+
 
 		</tr>
-
-		<%
-			for (Booking book : myBooking) {
-		%>
-
 		<tr>
-			<td><%=book.getPnrNumber()%></td>
-			<td><%=book.getTravel_date()%></td>
-			<td><%=book.getNoOfSeats()%></td>
-			<td><%=book.getCurrentStatus()%></td>
-
-		</tr>
-
-		<%
-			}
-			}
-		%>
+			<c:forEach items="${booklist}" var="b">
+				<td>${b.pnrNumber}</td>
+				<td>${b.travel_date}</td>
+				<td>${b.noOfSeats}</td>
+				<td>${b.currentStatus}</td>
+			</c:forEach>
 
 
-	</table>
-
-	<%
-		
-	%>
-
-
-
-
-
-
-
-
-</body>
+		</tr></body>
 </html>

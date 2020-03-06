@@ -29,7 +29,7 @@ public class Booking extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		BookingService obj = new BookingService();
-		out.println("hi");
+		
 		try {
 
 			int amount = obj.bookSeats1(trainNumber, userId, SourceStation, destStation, noOfSeats, date);

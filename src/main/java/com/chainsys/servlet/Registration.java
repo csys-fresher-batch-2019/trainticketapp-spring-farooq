@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.Util.MailUtil1;
 import com.chainsys.dao.impl.RegistrationImplementation;
 import com.chainsys.exception.DbException;
+import com.chainsys.exception.ServiceException;
 import com.chainsys.service.RegisterService;
 
 @WebServlet("/Registration")
@@ -44,7 +45,10 @@ public class Registration extends HttpServlet {
 
     		} catch (DbException e) {
     			e.printStackTrace();
-    		}
+    		} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		
     		 } else{
     			 

@@ -15,7 +15,7 @@ public class TestConnect {
 
 
 		//Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@13.235.147.120:1521:XE", "farooq", "farooq");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@13.235.147.120:1521:XE", "farooq", "farooq");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "oracle");
 		return connection;
 	}
 	}

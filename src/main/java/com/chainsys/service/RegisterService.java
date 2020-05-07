@@ -30,7 +30,7 @@ public class RegisterService {
 UserValidator.validateregistration(emailid, username, password, password, phonenumber, cityname);
 }
 		catch(Exception e) {
-			throw new ServiceException("invalid data");
+			throw new ServiceException(e.getMessage());
 		}
 		return obj.registrationInsert(username, password, emailid, phonenumber, gender, dob, cityname);
 		

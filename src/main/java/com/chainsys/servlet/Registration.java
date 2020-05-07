@@ -36,6 +36,8 @@ public class Registration extends HttpServlet {
 		 if(password.equals(pass)) {
 
 				RegisterService obj1 = new RegisterService();
+				PrintWriter out = response.getWriter();
+
 
     		 try {
     			int UserId=obj1.registrationInsert(UserName, password, email, phonenumber, gender, dob, city);
@@ -44,10 +46,11 @@ public class Registration extends HttpServlet {
     			 request.getRequestDispatcher("/NewIndex.jsp?").forward(request, response);
 
     		} catch (DbException e) {
-    			e.printStackTrace();
+    			request.setAttribute("error", e.getMessage());
+//    			out.println(e.getMessage());
     		} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+    			request.setAttribute("error", e.getMessage());
+			//	out.println(e.getMessage());
 			}
     		
     		 } else{
@@ -58,32 +61,6 @@ public class Registration extends HttpServlet {
             
          }
                 
-		 
-		 
-		 
-		 
-		 
-		 
-		 if(password.equals(pass)) {
-			 
-		 
-		 RegistrationImplementation obj = new  RegistrationImplementation();
-		 try {
-			int UserId=obj.registrationInsert(UserName, password, email, phonenumber, gender, dob, city);
-			request.setAttribute("userid", UserId);
-			 request.getRequestDispatcher("/NewIndex.jsp?").forward(request, response);
-
-		} catch (DbException e) {
-			PrintWriter out = response.getWriter();
-			out.println("User Already Registered");
-		}
 		
-		 }else {
-			 PrintWriter out = response.getWriter();
-			 out.println("PASSWORD DOESNOT MATCH");
-			 response.sendRedirect("Registration.jsp");
-			 			 
-		 }
-		 }
-
 	}
+}

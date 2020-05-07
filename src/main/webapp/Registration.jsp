@@ -45,14 +45,13 @@ body  {
 
 <form name="form" action="Registration" method="post" onsubmit="return validate()">
 <table align="center">
- 
  <tr>
  <td>Email</td>
  <td><input type="email" name="email" required/></td>
  </tr>
  <tr>
  <td>Username</td>
- <td><input type="text" name="username" required/></td>
+ <td><input type="text" name="username" /></td>
  </tr>
  <tr>
  <td>Password</td>
@@ -95,10 +94,13 @@ body  {
         out.println(request.getAttribute("errorMessage"));
     }
 %>
- 
+
  </tr>
 </table>
 </form>
- 
+<script type="text/javascript">
+
+
+</script> 
 </body>
 </html>

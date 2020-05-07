@@ -222,7 +222,7 @@ if(result!=null){
 			LocalDate date = LocalDate.now();
 			%>
 					</datalist></label><br> <br> <label> <input type="date"
-					name="Traveldate" min="<%=date %>" max="2020-05-02"
+					name="Traveldate" min="<%=date %>" max="2020-07-02"
 					placeholder="Select Travel Date"> <br></label> <br>
 				<button type="submit" class="cancelbtn">FIND TRAINS</button>
 

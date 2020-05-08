@@ -173,7 +173,8 @@ public class Bookingimplements implements com.chainsys.dao.BookingDAO {
 			LocalDate date) throws Exception {
 
 		int a = 0;
-		try (Connection connection = TestConnect.getConnection(); Statement stmt1 = connection.createStatement();) {
+		try (Connection connection = TestConnect.getConnection(); 
+				Statement stmt1 = connection.createStatement();) {
 
 			String sql = "select blocklist from registration where user_id=" + userId + "";
 
